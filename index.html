@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVcraft — Le CV qui décroche l'entretien</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08080a;--ink2:#141418;--ink3:#1e1e26;
+  --white:#ffffff;--cream:#faf9f6;--cream2:#f2f1ed;--cream3:#e8e7e1;
+  --g1:#d4d3cc;--g2:#a8a79f;--g3:#74736c;--g4:#4a4944;
+  --blue:#1d4ed8;--blue2:#2563eb;--blueli:#eff6ff;--bluemid:#93c5fd;
+  --purple:#7c3aed;--purpleli:#f5f3ff;
+  --green:#15803d;--greenli:#f0fdf4;--greenm:#86efac;
+  --amber:#b45309;--amberli:#fffbeb;
+  --red:#dc2626;
+  --rsm:8px;--rmd:14px;--rlg:22px;--rxl:30px;--r2xl:44px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.14);
+  --shadow-xl:0 24px 80px rgba(0,0,0,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--ink);color:var(--white);overflow-x:hidden;}
+::selection{background:var(--blue2);color:#fff;}
+
+/* ═══ SCROLL BAR ═══ */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--ink);}
+::-webkit-scrollbar-thumb{background:var(--ink3);border-radius:3px;}
+
+/* ═══════════════════ NAV ═══════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:rgba(8,8,10,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .3s;
+}
+.nav-logo{font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:-1px;display:flex;align-items:center;gap:2px;}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue2);margin-left:2px;margin-bottom:12px;}
+.nav-menu{display:flex;align-items:center;gap:32px;}
+.nav-menu a{font-size:14px;color:rgba(255,255,255,.45);text-decoration:none;font-weight:500;transition:color .2s;letter-spacing:.01em;}
+.nav-menu a:hover{color:#fff;}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.nav-login{font-size:14px;color:rgba(255,255,255,.45);text-decoration:none;font-weight:600;transition:color .2s;}
+.nav-login:hover{color:#fff;}
+.nav-cta{background:var(--blue2);color:#fff;padding:10px 24px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap;}
+.nav-cta:hover{background:var(--blue);transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,99,235,.4);}
+@media(max-width:768px){.nav-menu{display:none;}.nav-login{display:none;}nav{padding:0 20px;}}
+
+/* ═══════════════════ HERO ═══════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:100px 24px 60px;
+  position:relative;overflow:hidden;
+  background:var(--ink);
+}
+/* Ambient glow */
+.hero::before{content:'';position:absolute;top:-30%;left:-10%;width:70%;height:70%;border-radius:50%;background:radial-gradient(ellipse,rgba(29,78,216,.18) 0%,transparent 65%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-20%;right:-10%;width:60%;height:60%;border-radius:50%;background:radial-gradient(ellipse,rgba(124,58,237,.12) 0%,transparent 65%);pointer-events:none;}
+/* Grid texture */
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+/* Grain */
+.hero-grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");pointer-events:none;}
+
+.hero-inner{position:relative;z-index:1;text-align:center;max-width:900px;width:100%;}
+
+/* Eyebrow pill */
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:999px;margin-bottom:32px;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
+  font-size:13px;font-weight:600;color:rgba(255,255,255,.55);
+  animation:fadeUp .8s ease both;
+}
+.hero-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--blue2);flex-shrink:0;animation:pulse 2.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+
+/* Main headline */
+.hero-h1{
+  font-family:'Fraunces',serif;font-size:clamp(56px,10vw,104px);
+  font-weight:900;line-height:.9;letter-spacing:-4px;
+  margin-bottom:28px;
+  animation:fadeUp .8s .1s ease both;
+}
+.hero-h1 .l1{display:block;color:#fff;}
+.hero-h1 .l2{
+  display:block;
+  background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 40%,#f472b6 80%,#fb923c 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-h1 .l3{display:block;color:rgba(255,255,255,.18);font-style:italic;}
+
+/* Sub */
+.hero-sub{
+  font-size:clamp(16px,2.2vw,20px);color:rgba(255,255,255,.45);
+  max-width:520px;margin:0 auto 40px;line-height:1.65;font-weight:400;
+  animation:fadeUp .8s .2s ease both;
+}
+
+/* CTA row */
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .3s ease both;}
+.cta-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue2);color:#fff;padding:16px 36px;
+  border-radius:999px;font-size:16px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  transition:all .25s;
+  box-shadow:0 0 0 0 rgba(37,99,235,.5),0 4px 20px rgba(37,99,235,.3);
+}
+.cta-primary:hover{transform:translateY(-3px);box-shadow:0 0 0 4px rgba(37,99,235,.2),0 12px 40px rgba(37,99,235,.45);}
+.cta-primary .arrow{transition:transform .2s;}
+.cta-primary:hover .arrow{transform:translateX(4px);}
+.cta-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:rgba(255,255,255,.6);
+  padding:16px 32px;border-radius:999px;font-size:16px;font-weight:600;
+  text-decoration:none;border:1px solid rgba(255,255,255,.12);
+  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .25s;
+}
+.cta-secondary:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);}
+
+/* Trust note */
+.hero-trust{
+  font-size:13px;color:rgba(255,255,255,.25);margin-top:20px;
+  animation:fadeUp .8s .4s ease both;
+}
+
+/* Feature pills */
+.hero-pills{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-top:48px;animation:fadeUp .8s .4s ease both;
+}
+.fpill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);
+  font-size:13px;font-weight:600;color:rgba(255,255,255,.5);
+}
+.fpill .ico{font-size:14px;}
+
+/* ═══ BROWSER MOCKUP ═══ */
+.hero-browser{
+  position:relative;z-index:1;
+  width:100%;max-width:1000px;margin:64px auto 0;
+  animation:fadeUp .8s .6s ease both;
+}
+.browser-frame{
+  background:var(--ink2);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--rxl);overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04),0 48px 120px rgba(0,0,0,.7),0 24px 60px rgba(0,0,0,.4);
+}
+.browser-bar{
+  background:rgba(255,255,255,.04);padding:14px 20px;
+  display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.b-dots{display:flex;gap:6px;}
+.b-dot{width:12px;height:12px;border-radius:50%;}
+.b-dot:nth-child(1){background:#ff5f57;}.b-dot:nth-child(2){background:#febc2e;}.b-dot:nth-child(3){background:#28c840;}
+.b-url{
+  flex:1;background:rgba(255,255,255,.06);border-radius:8px;
+  padding:6px 14px;font-size:12px;color:rgba(255,255,255,.25);
+  display:flex;align-items:center;gap:6px;
+}
+.b-url::before{content:'🔒';font-size:11px;}
+.browser-content{display:grid;grid-template-columns:380px 1fr;min-height:480px;}
+@media(max-width:760px){.browser-content{grid-template-columns:1fr;}}
+.bc-left{padding:28px;border-right:1px solid rgba(255,255,255,.06);}
+.bc-right{padding:28px;background:rgba(255,255,255,.015);}
+/* Fake form */
+.ff-section{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.2);margin:0 0 12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);}
+.ff-section:first-child{padding-top:0;border-top:none;}
+.ff-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.ff-field{margin-bottom:8px;}
+.ff-label{font-size:10px;color:rgba(255,255,255,.25);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;}
+.ff-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:7px;padding:8px 12px;font-size:12px;color:rgba(255,255,255,.6);width:100%;}
+.ff-input.filled{color:rgba(255,255,255,.85);border-color:rgba(37,99,235,.4);}
+.ff-photo{border:2px dashed rgba(255,255,255,.1);border-radius:10px;padding:12px;text-align:center;margin-bottom:12px;font-size:12px;color:rgba(255,255,255,.3);}
+.ff-photo-done{border-color:rgba(37,99,235,.4);background:rgba(37,99,235,.06);color:rgba(255,255,255,.6);}
+.ff-ai-btn{width:100%;background:linear-gradient(135deg,var(--blue2),var(--purple));color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px;}
+/* Mini CV preview */
+.mini-cv-wrap{background:#fff;border-radius:12px;overflow:hidden;height:100%;}
+.mini-cv-sb{background:#0c0c12;padding:16px 14px;width:90px;float:left;height:100%;min-height:420px;}
+.mini-cv-main{margin-left:90px;padding:16px;}
+.mini-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue2),var(--purple));margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:900;font-size:18px;color:#fff;}
+.mini-name{font-size:9px;font-weight:800;text-align:center;color:#fff;margin-bottom:2px;line-height:1.2;}
+.mini-role{font-size:7px;color:rgba(255,255,255,.4);text-align:center;font-weight:600;margin-bottom:12px;}
+.mini-sec{margin-bottom:8px;}
+.mini-sec-t{font-size:6px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid rgba(255,255,255,.08);}
+.mini-line-s{height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin-bottom:3px;}
+.mini-skill-t{height:3px;border-radius:2px;background:rgba(255,255,255,.08);margin-bottom:4px;}
+.mini-skill-f{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue2),#818cf8);}
+/* main side */
+.mini-main-sec{margin-bottom:12px;}
+.mini-main-t{font-size:7px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue2);padding-bottom:3px;border-bottom:1.5px solid var(--blueli);margin-bottom:8px;}
+.mini-entry{margin-bottom:6px;}
+.mini-entry-t{font-size:9px;font-weight:700;color:#0c0c12;}
+.mini-entry-sub{font-size:7px;color:#888;margin:1px 0 3px;}
+.mini-entry-lines .mini-line-m{height:4px;background:#f0f0ec;border-radius:2px;margin-bottom:2px;}
+.mini-tags-row{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px;}
+.mini-tag{font-size:7px;padding:2px 7px;border-radius:999px;font-weight:700;}
+.mini-tag.b{background:var(--blueli);color:var(--blue2);}
+.mini-tag.g{background:var(--greenli);color:var(--green);}
+.mini-tag.gy{background:#f5f4f0;color:#666;}
+.mini-link{font-size:7px;color:var(--blue2);display:flex;align-items:center;gap:2px;margin-bottom:3px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════ DIVIDER ═══════════════════ */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);margin:0;}
+
+/* ═══════════════════ SECTIONS ═══════════════════ */
+.section{padding:100px 24px;background:var(--ink);}
+.section.alt{background:var(--ink2);}
+.section.light{background:var(--cream);color:var(--ink);}
+.ct{max-width:1100px;margin:0 auto;}
+.eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--blue2);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--blue2);}
+.sec-h{font-family:'Fraunces',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px;color:#fff;}
+.section.light .sec-h{color:var(--ink);}
+.sec-sub{font-size:18px;color:rgba(255,255,255,.4);line-height:1.65;max-width:500px;font-weight:400;}
+.section.light .sec-sub{color:var(--g3);}
+
+/* ═══════════════════ HOW IT WORKS ═══════════════════ */
+#how{background:var(--ink2);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:64px;border-radius:var(--rxl);overflow:hidden;border:1px solid rgba(255,255,255,.06);}
+@media(max-width:800px){.steps{grid-template-columns:1fr;border-radius:var(--rlg);}}
+.step{
+  background:var(--ink2);padding:48px 40px;
+  transition:background .3s;position:relative;
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.step:last-child{border-right:none;}
+.step:hover{background:var(--ink3);}
+.step-num{
+  font-family:'Fraunces',serif;font-size:72px;font-weight:900;
+  color:rgba(255,255,255,.04);line-height:1;margin-bottom:24px;
+  position:absolute;top:24px;right:28px;
+}
+.step-ico-wrap{
+  width:52px;height:52px;border-radius:var(--rmd);
+  background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:20px;
+}
+.step-h{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-.5px;margin-bottom:10px;}
+.step-p{font-size:15px;color:rgba(255,255,255,.4);line-height:1.7;}
+
+/* ═══════════════════ EDITOR ═══════════════════ */
+#app{background:var(--ink);padding:100px 24px;}
+.editor-wrap{
+  background:var(--ink2);border-radius:var(--rxl);
+  border:1px solid rgba(255,255,255,.07);
+  overflow:hidden;margin-top:64px;
+  box-shadow:var(--shadow-xl);
+}
+/* Top bar */
+.editor-bar{
+  background:rgba(255,255,255,.03);padding:16px 28px;
+  display:flex;align-items:center;gap:16px;
+  border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:12px;
+}
+.e-dots2{display:flex;gap:7px;}
+.e-dot2{width:13px;height:13px;border-radius:50%;}
+.e-dot2:nth-child(1){background:#ff5f57;}.e-dot2:nth-child(2){background:#febc2e;}.e-dot2:nth-child(3){background:#28c840;}
+.e-title2{font-size:13px;color:rgba(255,255,255,.25);font-weight:500;margin-right:auto;}
+.e-tabs2{display:flex;gap:3px;background:rgba(255,255,255,.05);padding:4px;border-radius:var(--rsm);}
+.e-tab2{padding:8px 20px;font-size:13px;font-weight:600;color:rgba(255,255,255,.35);border:none;background:transparent;border-radius:6px;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.e-tab2.on{background:var(--blue2);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.3);}
+
+/* Body */
+.editor-body{display:grid;grid-template-columns:400px 1fr;}
+@media(max-width:960px){.editor-body{grid-template-columns:1fr;}}
+
+/* Form panel */
+.form-panel{padding:32px;overflow-y:auto;max-height:900px;border-right:1px solid rgba(255,255,255,.05);}
+.form-panel::-webkit-scrollbar{width:3px;}
+.form-panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px;}
+.epage{display:none;}.epage.on{display:block;}
+.fsec-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:rgba(255,255,255,.2);margin:28px 0 14px;
+  padding-top:28px;border-top:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;gap:8px;
+}
+.fsec-label:first-child{margin-top:0;padding-top:0;border-top:none;}
+.fsec-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.05);}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fgroup{margin-bottom:10px;}
+.flabel{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.finput,.ftarea{
+  width:100%;padding:11px 14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--rsm);font-size:14px;color:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;
+}
+.finput::placeholder,.ftarea::placeholder{color:rgba(255,255,255,.18);}
+.finput:focus,.ftarea:focus{outline:none;border-color:rgba(37,99,235,.6);background:rgba(37,99,235,.08);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+.ftarea{resize:vertical;min-height:85px;line-height:1.5;}
+
+/* Photo upload */
+.photo-upload-zone{
+  border:2px dashed rgba(255,255,255,.1);border-radius:var(--rmd);
+  padding:24px;text-align:center;cursor:pointer;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.photo-upload-zone:hover{border-color:var(--blue2);background:rgba(37,99,235,.06);}
+#real-photo-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+#photo-preview-img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--blue2);display:none;margin:0 auto 10px;}
+.photo-upload-icon{font-size:32px;margin-bottom:10px;}
+.photo-upload-text{font-size:13px;color:rgba(255,255,255,.35);line-height:1.5;}
+.photo-upload-text strong{color:rgba(255,255,255,.65);}
+.photo-upload-sub{font-size:11px;color:rgba(255,255,255,.2);margin-top:4px;}
+
+/* AI panel */
+.ai-box{
+  background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.15);
+  border-radius:var(--rmd);padding:20px;margin-top:16px;
+}
+.ai-box-title{font-size:12px;font-weight:700;color:var(--bluemid);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.ai-box ul{list-style:none;font-size:13px;color:rgba(255,255,255,.35);line-height:2.2;}
+.ai-box ul li::before{content:'→ ';color:var(--blue2);}
+
+/* AI button */
+.btn-ai{
+  width:100%;padding:15px;border:none;border-radius:var(--rmd);
+  cursor:pointer;font-size:15px;font-weight:700;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:linear-gradient(135deg,var(--blue2) 0%,var(--purple) 100%);
+  color:#fff;margin-top:16px;position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-ai:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(37,99,235,.4);}
+.btn-ai:active{transform:scale(.98);}
+.btn-ai-shine{position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transition:left .7s;}
+.btn-ai:hover .btn-ai-shine{left:100%;}
+.ai-progress-wrap{margin-top:14px;}
+.ai-prog-track{height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.ai-prog-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--blue2),var(--purple));border-radius:3px;transition:width .3s;}
+.ai-prog-text{font-size:12px;color:rgba(255,255,255,.3);margin-top:7px;min-height:18px;font-weight:500;}
+
+/* ═══ CV PREVIEW PANEL ═══ */
+.preview-panel{background:#f8f7f3;overflow-y:auto;max-height:900px;}
+.preview-panel::-webkit-scrollbar{width:3px;}
+.preview-panel::-webkit-scrollbar-thumb{background:var(--g1);border-radius:3px;}
+.preview-inner{padding:28px;}
+.preview-tabs{display:flex;gap:6px;margin-bottom:20px;}
+.prev-tab{flex:1;padding:10px;font-size:13px;font-weight:700;border-radius:var(--rsm);border:1.5px solid var(--cream3);background:#fff;color:var(--g3);cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.prev-tab.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* ═══ CV DOC ═══ */
+.cv-document{background:#fff;border-radius:var(--rmd);box-shadow:0 4px 32px rgba(0,0,0,.12);overflow:hidden;}
+.cv-two-col{display:grid;grid-template-columns:200px 1fr;}
+@media(max-width:520px){.cv-two-col{grid-template-columns:1fr;}}
+
+/* Sidebar */
+.cv-sidebar2{background:var(--ink);padding:28px 22px;display:flex;flex-direction:column;gap:0;}
+.cv-photo-section{text-align:center;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,.07);}
+.cv-photo-el{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.15);display:block;margin:0 auto;}
+.cv-photo-placeholder{width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.07);border:2px dashed rgba(255,255,255,.15);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.cv-sidebar-name{font-family:'Fraunces',serif;font-size:17px;font-weight:900;text-align:center;line-height:1.15;margin-top:12px;color:#fff;letter-spacing:-.3px;}
+.cv-sidebar-role{font-size:10px;color:rgba(255,255,255,.4);text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.cv-sb-section{margin-bottom:20px;}
+.cv-sb-section-title{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.25);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.06);}
+.cv-contact-row{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:rgba(255,255,255,.55);margin-bottom:8px;line-height:1.4;word-break:break-all;}
+.cv-contact-icon{font-size:12px;flex-shrink:0;margin-top:1px;}
+.cv-link-row{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(99,155,250,.8);margin-bottom:7px;cursor:pointer;}
+.cv-skill-item{margin-bottom:9px;}
+.cv-skill-name{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:4px;font-weight:500;}
+.cv-skill-track{height:3px;background:rgba(255,255,255,.08);border-radius:2px;}
+.cv-skill-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue2),#818cf8);}
+.cv-lang-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,.55);margin-bottom:6px;}
+.cv-lang-level{font-size:10px;color:rgba(255,255,255,.25);background:rgba(255,255,255,.05);padding:1px 8px;border-radius:999px;}
+
+/* Main */
+.cv-main2{padding:28px 24px;}
+.cv-section2{margin-bottom:22px;}
+.cv-section-title2{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:var(--blue2);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--blueli);}
+.cv-entry2{margin-bottom:14px;}
+.cv-entry-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:3px;}
+.cv-entry-title2{font-size:13px;font-weight:700;color:var(--ink);}
+.cv-entry-date2{font-size:10px;color:var(--g3);font-weight:600;background:var(--cream2);padding:2px 9px;border-radius:999px;white-space:nowrap;flex-shrink:0;}
+.cv-entry-company{font-size:12px;color:var(--g3);font-style:italic;margin-bottom:6px;}
+.cv-entry-desc2{font-size:12px;color:var(--g4);line-height:1.7;}
+.cv-entry-desc2 ul{padding-left:16px;}
+.cv-entry-desc2 li{margin-bottom:3px;}
+.cv-tag-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.cvtag2{font-size:10px;padding:3px 10px;border-radius:999px;font-weight:700;}
+.cvtag2.b{background:var(--blueli);color:var(--blue);}
+.cvtag2.g{background:var(--greenli);color:var(--green);}
+.cvtag2.p{background:var(--purpleli);color:var(--purple);}
+.cvtag2.a{background:var(--amberli);color:var(--amber);}
+.cvtag2.gy{background:var(--cream2);color:var(--g4);}
+
+/* Download bar */
+.dl-row{display:flex;gap:10px;padding:0 28px 28px;}
+.dl-btn2{flex:1;padding:13px;border-radius:var(--rsm);font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.dl-primary{background:var(--ink);color:#fff;}.dl-primary:hover{background:var(--blue2);}
+.dl-secondary{background:var(--cream2);color:var(--ink);}.dl-secondary:hover{background:var(--cream3);}
+
+/* LM */
+.lm-preview{background:#fff;border-radius:var(--rmd);padding:40px;box-shadow:0 4px 32px rgba(0,0,0,.08);font-size:14px;line-height:1.9;color:var(--g4);}
+.lm-preview p{margin-bottom:16px;}
+.lm-header-name{font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:var(--ink);letter-spacing:-.5px;}
+.lm-header-role{color:var(--blue2);font-weight:700;font-size:13px;margin:4px 0 28px;text-transform:uppercase;letter-spacing:.06em;}
+.lm-preview strong{color:var(--ink);}
+
+/* ═══════════════════ FEATURES BENTO ═══════════════════ */
+#features{background:var(--ink2);}
+.bento-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:64px;}
+@media(max-width:960px){.bento-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.bento-grid{grid-template-columns:1fr;}}
+.bento-item{
+  border-radius:var(--rxl);padding:36px;
+  border:1px solid rgba(255,255,255,.06);
+  background:var(--ink3);
+  transition:transform .3s,border-color .3s;
+  position:relative;overflow:hidden;
+}
+.bento-item:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.12);}
+.bento-item.span6{grid-column:span 6;}
+.bento-item.span4{grid-column:span 4;}
+.bento-item.span8{grid-column:span 8;}
+.bento-item.span12{grid-column:span 12;}
+@media(max-width:960px){.bento-item{grid-column:span 1 !important;}}
+.bento-item.dark-blue{background:linear-gradient(135deg,rgba(29,78,216,.2),rgba(124,58,237,.15));border-color:rgba(37,99,235,.2);}
+.bento-item.dark-purple{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(236,72,153,.1));border-color:rgba(124,58,237,.2);}
+.bento-icon2{font-size:36px;margin-bottom:20px;display:block;}
+.bento-h2{font-family:'Fraunces',serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:-.5px;margin-bottom:10px;}
+.bento-p2{font-size:15px;color:rgba(255,255,255,.38);line-height:1.7;}
+/* Score display */
+.score-display{display:flex;align-items:center;gap:24px;margin-top:24px;}
+.score-circle{position:relative;width:88px;height:88px;flex-shrink:0;}
+.score-circle svg{transform:rotate(-90deg);}
+.sc-bg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:7;}
+.sc-fill{fill:none;stroke:#4ade80;stroke-width:7;stroke-linecap:round;stroke-dasharray:220;stroke-dashoffset:26;}
+.sc-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:#4ade80;}
+.score-breakdown{flex:1;}
+.sb-row{margin-bottom:10px;}
+.sb-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:4px;font-weight:600;}
+.sb-track{height:5px;background:rgba(255,255,255,.07);border-radius:3px;}
+.sb-bar{height:100%;border-radius:3px;background:#4ade80;}
+/* Keyword chips */
+.keyword-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.kchip{font-size:11px;padding:4px 12px;border-radius:999px;font-weight:700;background:rgba(37,99,235,.15);color:var(--bluemid);border:1px solid rgba(37,99,235,.2);}
+.kchip.found{background:rgba(21,128,61,.15);color:var(--greenm);border-color:rgba(21,128,61,.2);}
+/* Timeline */
+.timeline{margin-top:20px;}
+.tl-item{display:flex;gap:14px;margin-bottom:14px;}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--blue2);flex-shrink:0;margin-top:5px;}
+.tl-content{font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;}
+.tl-content strong{color:rgba(255,255,255,.75);}
+
+/* ═══════════════════ PRICING ═══════════════════ */
+#pricing{background:var(--ink);}
+.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px;align-items:start;}
+@media(max-width:840px){.pricing-cards{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto;}}
+.price-card{border:1px solid rgba(255,255,255,.07);border-radius:var(--rxl);padding:36px 28px;background:var(--ink2);transition:transform .25s,border-color .25s;position:relative;}
+.price-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.14);}
+.price-card.featured{background:var(--white);color:var(--ink);border-color:transparent;box-shadow:0 0 0 2px var(--blue2),var(--shadow-xl);transform:scale(1.03);}
+.price-card.featured:hover{transform:scale(1.03) translateY(-6px);}
+.pc-badge{display:inline-block;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;margin-bottom:24px;}
+.price-card:not(.featured) .pc-badge{background:rgba(37,99,235,.15);color:var(--bluemid);}
+.price-card.featured .pc-badge{background:var(--blue2);color:#fff;}
+.pc-name{font-family:'Fraunces',serif;font-size:26px;font-weight:900;margin-bottom:6px;color:#fff;}
+.price-card.featured .pc-name{color:var(--ink);}
+.pc-price{font-family:'Fraunces',serif;font-size:56px;font-weight:900;line-height:1;letter-spacing:-2px;color:#fff;}
+.price-card.featured .pc-price{color:var(--ink);}
+.pc-price sup{font-size:24px;vertical-align:top;margin-top:12px;display:inline-block;}
+.pc-price sub{font-size:17px;font-weight:400;opacity:.45;}
+.pc-desc{font-size:14px;color:rgba(255,255,255,.35);margin:14px 0 28px;line-height:1.55;}
+.price-card.featured .pc-desc{color:var(--g3);}
+.pc-features{list-style:none;margin-bottom:32px;}
+.pc-features li{font-size:14px;padding:9px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.05);}
+.price-card.featured .pc-features li{border-color:var(--cream3);}
+.pc-check{width:20px;height:20px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;}
+.pc-cross{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,.2);flex-shrink:0;}
+.price-card.featured .pc-cross{background:var(--cream2);color:var(--g2);}
+.pc-features li.dim{opacity:.4;}
+.pc-btn{width:100%;padding:16px;border-radius:999px;font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;border:none;cursor:pointer;transition:all .25s;}
+.price-card:not(.featured) .pc-btn{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.1);}
+.price-card:not(.featured) .pc-btn:hover{background:var(--blue2);border-color:var(--blue2);}
+.price-card.featured .pc-btn{background:var(--blue2);color:#fff;box-shadow:0 8px 24px rgba(37,99,235,.35);}
+.price-card.featured .pc-btn:hover{background:var(--blue);}
+
+/* ═══════════════════ FAQ ═══════════════════ */
+#faq{background:var(--ink2);}
+.faq-container{max-width:720px;margin:64px auto 0;}
+.faq-item2{border-bottom:1px solid rgba(255,255,255,.06);}
+.faq-question{width:100%;padding:22px 0;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;font-size:17px;font-weight:600;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;gap:16px;line-height:1.4;}
+.faq-icon2{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:18px;color:rgba(255,255,255,.3);transition:all .35s;flex-shrink:0;}
+.faq-item2.open .faq-icon2{background:var(--blue2);color:#fff;transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-answer-inner{font-size:16px;color:rgba(255,255,255,.4);line-height:1.8;padding-bottom:22px;}
+
+/* ═══════════════════ CTA BOTTOM ═══════════════════ */
+.cta-bottom{
+  background:var(--ink);padding:120px 24px;text-align:center;
+  position:relative;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.cta-bottom::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(37,99,235,.12) 0%,transparent 65%);}
+.cta-h{font-family:'Fraunces',serif;font-size:clamp(40px,7vw,72px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:.95;margin-bottom:20px;position:relative;}
+.cta-h em{font-style:normal;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-sub{font-size:18px;color:rgba(255,255,255,.35);margin-bottom:40px;position:relative;max-width:480px;margin-left:auto;margin-right:auto;}
+.cta-note{font-size:13px;color:rgba(255,255,255,.2);margin-top:16px;position:relative;}
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding:40px 24px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:900;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:4px;}
+.footer-logo .fd{width:6px;height:6px;border-radius:50%;background:var(--blue2);margin-bottom:8px;}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.2);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,.5);}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.15);}
+
+/* ═══════════════════ TOAST ═══════════════════ */
+#toast{
+  position:fixed;bottom:28px;right:28px;
+  background:rgba(255,255,255,.1);backdrop-filter:blur(20px);
+  color:#fff;padding:14px 22px;border-radius:var(--rmd);
+  font-size:14px;font-weight:600;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--shadow-xl);
+  transform:translateY(80px);opacity:0;
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  z-index:9999;max-width:340px;
+}
+#toast.show{transform:translateY(0);opacity:1;}
+
+/* ═══════════════════ REVEAL ═══════════════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">CVcraft<span class="dot"></span></a>
+  <div class="nav-menu">
+    <a href="#how">Comment ça marche</a>
+    <a href="#app">Éditeur</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#pricing">Tarifs</a>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-login" href="#app">Se connecter</a>
+    <a class="nav-cta" href="#app">Créer mon CV →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-pill"><span class="hero-pill-dot"></span>Nouveau · Optimisation IA + Score ATS en temps réel</div>
+    <h1 class="hero-h1">
+      <span class="l1">Ton CV</span>
+      <span class="l2">qui décroche</span>
+      <span class="l3">l'entretien.</span>
+    </h1>
+    <p class="hero-sub">L'outil le plus intelligent pour créer un CV professionnel. Il analyse l'offre, reformule ton profil, génère ta lettre. En 2 minutes.</p>
+    <div class="hero-ctas">
+      <a class="cta-primary" href="#app">Créer mon CV gratuitement <span class="arrow">→</span></a>
+      <a class="cta-secondary" href="#how">Voir comment ça marche</a>
+    </div>
+    <p class="hero-trust">✓ Gratuit pour commencer · ✓ Aucune carte bancaire requise · ✓ Données 100% privées</p>
+    <div class="hero-pills">
+      <div class="fpill"><span class="ico">📷</span>Photo intégrée</div>
+      <div class="fpill"><span class="ico">💼</span>LinkedIn & Portfolio</div>
+      <div class="fpill"><span class="ico">🎯</span>Score ATS instantané</div>
+      <div class="fpill"><span class="ico">✉️</span>Lettre de motivation IA</div>
+      <div class="fpill"><span class="ico">⚡</span>2 minutes chrono</div>
+    </div>
+  </div>
+
+  <!-- BROWSER MOCKUP -->
+  <div class="hero-browser">
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+        <div class="b-url">cvcraft.fr/editor</div>
+      </div>
+      <div class="browser-content">
+        <div class="bc-left">
+          <div class="ff-section">Photo de profil</div>
+          <div class="ff-photo ff-photo-done">📷 photo_profil.jpg · ✓ Ajoutée</div>
+          <div class="ff-section">Informations</div>
+          <div class="ff-row">
+            <div class="ff-field"><div class="ff-label">Prénom</div><div class="ff-input filled">Thomas</div></div>
+            <div class="ff-field"><div class="ff-label">Nom</div><div class="ff-input filled">Martin</div></div>
+          </div>
+          <div class="ff-field"><div class="ff-label">Poste visé</div><div class="ff-input filled">Technicien de Maintenance</div></div>
+          <div class="ff-field"><div class="ff-label">💼 LinkedIn</div><div class="ff-input filled">linkedin.com/in/thomas-m</div></div>
+          <div class="ff-field"><div class="ff-label">🌐 Portfolio</div><div class="ff-input filled">github.com/thomas-m</div></div>
+          <button class="ff-ai-btn">⚡ Optimiser avec l'IA</button>
+        </div>
+        <div class="bc-right">
+          <div class="mini-cv-wrap">
+            <div style="display:grid;grid-template-columns:90px 1fr;height:100%;">
+              <div class="mini-cv-sb">
+                <div class="mini-av">TM</div>
+                <div class="mini-name">Thomas Martin</div>
+                <div class="mini-role">Technicien Maintenance</div>
+                <div class="mini-sec"><div class="mini-sec-t">Contact</div><div class="mini-line-s" style="width:80%"></div><div class="mini-line-s" style="width:90%"></div><div class="mini-line-s" style="width:70%"></div></div>
+                <div class="mini-sec"><div class="mini-sec-t">Liens</div>
+                  <div style="font-size:7px;color:#4a9eff;margin-bottom:3px;">💼 LinkedIn ↗</div>
+                  <div style="font-size:7px;color:#4a9eff;">🌐 GitHub ↗</div>
+                </div>
+                <div class="mini-sec"><div class="mini-sec-t">Skills</div>
+                  <div class="mini-skill-t"><div class="mini-skill-f" style="width:90%"></div></div>
+                  <div class="mini-skill-t"><div class="mini-skill-f" style="width:80%"></div></div>
+                  <div class="mini-skill-t"><div class="mini-skill-f" style="width:85%"></div></div>
+                  <div class="mini-skill-t"><div class="mini-skill-f" style="width:75%"></div></div>
+                </div>
+              </div>
+              <div style="padding:14px;">
+                <div class="mini-main-sec"><div class="mini-main-t">Formation</div><div class="mini-entry"><div class="mini-entry-t">BUT Génie Industriel</div><div class="mini-entry-sub">IUT Mantes · Paris-Saclay</div><div class="mini-entry-lines"><div class="mini-line-m" style="width:90%"></div></div><div class="mini-tags-row"><span class="mini-tag b">Maintenance</span><span class="mini-tag g">Lean/5S</span></div></div></div>
+                <div class="mini-main-sec"><div class="mini-main-t">Expérience</div><div class="mini-entry"><div class="mini-entry-t">Opérateur logistique</div><div class="mini-entry-sub">Lidl · 2024–présent</div><div class="mini-entry-lines"><div class="mini-line-m"></div><div class="mini-line-m" style="width:85%"></div></div></div></div>
+                <div class="mini-main-sec"><div class="mini-main-t">Compétences</div><div class="mini-tags-row"><span class="mini-tag b">GMAO</span><span class="mini-tag g">Lean/5S</span><span class="mini-tag gy">AutoCAD</span><span class="mini-tag b">Excel</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section alt" id="how">
+  <div class="ct">
+    <div class="eyebrow reveal">Comment ça marche</div>
+    <h2 class="sec-h reveal">Trois étapes.<br>Un CV parfait.</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-ico-wrap">✏️</div>
+        <div class="step-h">Remplis ton profil</div>
+        <p class="step-p">Infos perso, photo, LinkedIn, portfolio, formation, expériences, langues. Tout dans un formulaire clair et guidé.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-ico-wrap">🤖</div>
+        <div class="step-h">L'IA optimise tout</div>
+        <p class="step-p">Colle l'offre d'emploi. L'IA extrait les mots-clés, reformule tes expériences, calcule ton score ATS et génère ta lettre.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-ico-wrap">🚀</div>
+        <div class="step-h">Télécharge et postule</div>
+        <p class="step-p">CV + lettre exportés en PDF haute qualité. Partage ton lien CVcraft aux recruteurs. Tu es prêt à postuler.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITOR -->
+<section id="app">
+  <div class="ct">
+    <div class="eyebrow reveal">L'éditeur intelligent</div>
+    <h2 class="sec-h reveal">Crée ton CV.<br>Tout en temps réel.</h2>
+    <p class="sec-sub reveal">Remplis à gauche, le CV se construit à droite. Instantanément.</p>
+
+    <div class="editor-wrap reveal">
+      <div class="editor-bar">
+        <div class="e-dots2"><div class="e-dot2"></div><div class="e-dot2"></div><div class="e-dot2"></div></div>
+        <span class="e-title2">CVcraft — Éditeur</span>
+        <div class="e-tabs2">
+          <button class="e-tab2 on" onclick="switchTab('profil',this)">Mon profil</button>
+          <button class="e-tab2" onclick="switchTab('ia',this)">Optimisation IA</button>
+        </div>
+      </div>
+      <div class="editor-body">
+
+        <!-- FORM -->
+        <div class="form-panel">
+
+          <!-- PROFIL PAGE -->
+          <div class="epage on" id="page-profil">
+            <div class="fsec-label">Photo de profil</div>
+            <div class="photo-upload-zone" id="photo-zone">
+              <input type="file" id="real-photo-input" accept="image/*" onchange="handlePhoto(this)">
+              <img id="photo-preview-img" src="" alt="Photo de profil">
+              <div id="photo-placeholder-el">
+                <div class="photo-upload-icon">📷</div>
+                <div class="photo-upload-text"><strong>Clique pour ajouter ta photo</strong></div>
+                <div class="photo-upload-sub">JPG, PNG · Max 5 MB · Recommandé : format carré</div>
+              </div>
+            </div>
+
+            <div class="fsec-label">Informations personnelles</div>
+            <div class="fgrid">
+              <div class="fgroup"><label class="flabel">Prénom</label><input class="finput" id="f-prenom" placeholder="Thomas" oninput="syncPreview()"></div>
+              <div class="fgroup"><label class="flabel">Nom</label><input class="finput" id="f-nom" placeholder="Martin" oninput="syncPreview()"></div>
+            </div>
+            <div class="fgroup"><label class="flabel">Poste visé</label><input class="finput" id="f-job" placeholder="Technicien de Maintenance Industrielle" oninput="syncPreview()"></div>
+            <div class="fgroup"><label class="flabel">Email</label><input class="finput" id="f-email" placeholder="thomas@email.com" oninput="syncPreview()"></div>
+            <div class="fgrid">
+              <div class="fgroup"><label class="flabel">Téléphone</label><input class="finput" id="f-phone" placeholder="06 12 34 56 78" oninput="syncPreview()"></div>
+              <div class="fgroup"><label class="flabel">Ville</label><input class="finput" id="f-city" placeholder="Mantes-la-Jolie (78)" oninput="syncPreview()"></div>
+            </div>
+            <div class="fgroup"><label class="flabel">💼 LinkedIn</label><input class="finput" id="f-linkedin" placeholder="linkedin.com/in/prenom-nom" oninput="syncPreview()"></div>
+            <div class="fgroup"><label class="flabel">🌐 Portfolio / GitHub</label><input class="finput" id="f-portfolio" placeholder="github.com/prenom-nom" oninput="syncPreview()"></div>
+
+            <div class="fsec-label">Formation</div>
+            <div class="fgroup"><label class="flabel">Diplôme</label><input class="finput" id="f-degree" placeholder="BUT Génie Industriel et Maintenance" oninput="syncPreview()"></div>
+            <div class="fgroup"><label class="flabel">École / Université</label><input class="finput" id="f-school" placeholder="IUT de Mantes · Université Paris-Saclay" oninput="syncPreview()"></div>
+            <div class="fgrid">
+              <div class="fgroup"><label class="flabel">Période</label><input class="finput" id="f-years" placeholder="2023 – 2026" oninput="syncPreview()"></div>
+              <div class="fgroup"><label class="flabel">Mention</label><input class="finput" id="f-mention" placeholder="Bien" oninput="syncPreview()"></div>
+            </div>
+
+            <div class="fsec-label">Expérience professionnelle</div>
+            <div class="fgroup"><label class="flabel">Intitulé du poste</label><input class="finput" id="f-etitle" placeholder="Opérateur logistique" oninput="syncPreview()"></div>
+            <div class="fgroup"><label class="flabel">Entreprise</label><input class="finput" id="f-eco" placeholder="Lidl — Grand entrepôt logistique" oninput="syncPreview()"></div>
+            <div class="fgrid">
+              <div class="fgroup"><label class="flabel">Début</label><input class="finput" id="f-estart" placeholder="Sept. 2024" oninput="syncPreview()"></div>
+              <div class="fgroup"><label class="flabel">Fin</label><input class="finput" id="f-eend" placeholder="Présent" oninput="syncPreview()"></div>
+            </div>
+            <div class="fgroup"><label class="flabel">Missions (une par ligne)</label><textarea class="ftarea" id="f-edesc" placeholder="Gestion des flux de marchandises&#10;Optimisation des stocks&#10;Respect des procédures qualité" oninput="syncPreview()"></textarea></div>
+
+            <div class="fsec-label">Compétences (séparées par des virgules)</div>
+            <div class="fgroup"><textarea class="ftarea" id="f-skills" style="min-height:60px;" placeholder="Maintenance industrielle, Lean/5S, GMAO, AutoCAD, Excel avancé, Logistique..." oninput="syncPreview()"></textarea></div>
+
+            <div class="fsec-label">Langues</div>
+            <div class="fgrid">
+              <div class="fgroup"><label class="flabel">Langue 1</label><input class="finput" id="f-l1" placeholder="Français" oninput="syncPreview()"></div>
+              <div class="fgroup"><label class="flabel">Niveau</label><input class="finput" id="f-l1n" placeholder="Natif" oninput="syncPreview()"></div>
+            </div>
+            <div class="fgrid">
+              <div class="fgroup"><label class="flabel">Langue 2</label><input class="finput" id="f-l2" placeholder="Anglais" oninput="syncPreview()"></div>
+              <div class="fgroup"><label class="flabel">Niveau</label><input class="finput" id="f-l2n" placeholder="B2 – Avancé" oninput="syncPreview()"></div>
+            </div>
+          </div>
+
+          <!-- IA PAGE -->
+          <div class="epage" id="page-ia">
+            <div class="fsec-label" style="margin-top:0;padding-top:0;border-top:none;">Offre d'emploi</div>
+            <div class="fgroup"><label class="flabel">Colle le texte de l'offre ici</label><textarea class="ftarea" id="f-offer" style="min-height:200px;" placeholder="Colle ici le texte complet de l'offre d'emploi. L'IA va analyser les exigences, identifier les mots-clés ATS et réécrire intelligemment ton CV pour correspondre parfaitement au poste..."></textarea></div>
+            <button class="btn-ai" onclick="launchAI()">
+              <span class="btn-ai-shine"></span>
+              ⚡ Optimiser mon CV avec l'IA
+            </button>
+            <div class="ai-progress-wrap">
+              <div class="ai-prog-track"><div class="ai-prog-bar" id="ai-prog"></div></div>
+              <div class="ai-prog-text" id="ai-prog-text"></div>
+            </div>
+            <div class="ai-box">
+              <div class="ai-box-title">✦ Ce que fait l'IA en 5 étapes</div>
+              <ul>
+                <li>Analyse sémantique de l'offre d'emploi</li>
+                <li>Extraction et scoring des mots-clés ATS</li>
+                <li>Reformulation intelligente de tes expériences</li>
+                <li>Calcul de ton score ATS en temps réel</li>
+                <li>Génération d'une lettre de motivation sur mesure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview-panel">
+          <div class="preview-inner">
+            <div class="preview-tabs">
+              <button class="prev-tab on" id="ptab-cv" onclick="switchPreview('cv')">📄 CV</button>
+              <button class="prev-tab" id="ptab-lm" onclick="switchPreview('lm')">✉️ Lettre de motivation</button>
+            </div>
+
+            <!-- CV -->
+            <div id="preview-cv">
+              <div class="cv-document">
+                <div class="cv-two-col">
+                  <!-- SIDEBAR -->
+                  <div class="cv-sidebar2">
+                    <div class="cv-photo-section">
+                      <img class="cv-photo-el" id="cv-photo-el" src="" alt="" style="display:none;">
+                      <div class="cv-photo-placeholder" id="cv-photo-placeholder">👤</div>
+                      <div class="cv-sidebar-name" id="cv-name-el">Prénom Nom</div>
+                      <div class="cv-sidebar-role" id="cv-job-el">Poste visé</div>
+                    </div>
+                    <div class="cv-sb-section">
+                      <div class="cv-sb-section-title">Contact</div>
+                      <div class="cv-contact-row"><span class="cv-contact-icon">📧</span><span id="cv-email-el">email@exemple.com</span></div>
+                      <div class="cv-contact-row"><span class="cv-contact-icon">📞</span><span id="cv-phone-el">06 XX XX XX XX</span></div>
+                      <div class="cv-contact-row"><span class="cv-contact-icon">📍</span><span id="cv-city-el">Ville</span></div>
+                    </div>
+                    <div class="cv-sb-section" id="cv-links-section">
+                      <div class="cv-sb-section-title">Liens</div>
+                      <div class="cv-link-row" id="cv-li-row"><span>💼</span><span id="cv-li-el" style="color:rgba(99,155,250,.4);">LinkedIn</span></div>
+                      <div class="cv-link-row" id="cv-pt-row"><span>🌐</span><span id="cv-pt-el" style="color:rgba(99,155,250,.4);">Portfolio</span></div>
+                    </div>
+                    <div class="cv-sb-section">
+                      <div class="cv-sb-section-title">Compétences</div>
+                      <div id="cv-skill-bars">
+                        <div class="cv-skill-item"><div class="cv-skill-name">Maintenance industrielle</div><div class="cv-skill-track"><div class="cv-skill-bar" style="width:90%"></div></div></div>
+                        <div class="cv-skill-item"><div class="cv-skill-name">Lean / 5S</div><div class="cv-skill-track"><div class="cv-skill-bar" style="width:82%"></div></div></div>
+                        <div class="cv-skill-item"><div class="cv-skill-name">GMAO</div><div class="cv-skill-track"><div class="cv-skill-bar" style="width:76%"></div></div></div>
+                        <div class="cv-skill-item"><div class="cv-skill-name">Logistique</div><div class="cv-skill-track"><div class="cv-skill-bar" style="width:87%"></div></div></div>
+                      </div>
+                    </div>
+                    <div class="cv-sb-section">
+                      <div class="cv-sb-section-title">Langues</div>
+                      <div class="cv-lang-row"><span id="cv-l1-el">Français</span><span class="cv-lang-level" id="cv-l1n-el">Natif</span></div>
+                      <div class="cv-lang-row"><span id="cv-l2-el">Anglais</span><span class="cv-lang-level" id="cv-l2n-el">B2</span></div>
+                    </div>
+                  </div>
+
+                  <!-- MAIN -->
+                  <div class="cv-main2">
+                    <div class="cv-section2">
+                      <div class="cv-section-title2">Formation</div>
+                      <div class="cv-entry2">
+                        <div class="cv-entry-header">
+                          <div class="cv-entry-title2" id="cv-degree-el">BUT Génie Industriel et Maintenance</div>
+                          <div class="cv-entry-date2" id="cv-years-el">2023 – 2026</div>
+                        </div>
+                        <div class="cv-entry-company" id="cv-school-el">IUT de Mantes · Université Paris-Saclay</div>
+                        <div class="cv-tag-list">
+                          <span class="cvtag2 b">Maintenance</span>
+                          <span class="cvtag2 g">Génie industriel</span>
+                          <span class="cvtag2 gy" id="cv-mention-el">Mention Bien</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cv-section2">
+                      <div class="cv-section-title2">Expérience professionnelle</div>
+                      <div class="cv-entry2">
+                        <div class="cv-entry-header">
+                          <div class="cv-entry-title2" id="cv-etitle-el">Opérateur logistique</div>
+                          <div class="cv-entry-date2" id="cv-edate-el">Sept. 2024 – Présent</div>
+                        </div>
+                        <div class="cv-entry-company" id="cv-eco-el">Lidl — Grand entrepôt logistique</div>
+                        <div class="cv-entry-desc2" id="cv-edesc-el">
+                          <ul>
+                            <li>Gestion des flux de marchandises et optimisation des stocks</li>
+                            <li>Respect des procédures qualité en environnement haute cadence</li>
+                            <li>Contribution active à la réduction des erreurs de préparation</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cv-section2">
+                      <div class="cv-section-title2">Compétences techniques</div>
+                      <div class="cv-tag-list" id="cv-skill-tags">
+                        <span class="cvtag2 b">Maintenance préventive</span>
+                        <span class="cvtag2 b">GMAO</span>
+                        <span class="cvtag2 g">Lean / 5S</span>
+                        <span class="cvtag2 g">Logistique</span>
+                        <span class="cvtag2 p">AutoCAD</span>
+                        <span class="cvtag2 gy">Excel avancé</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dl-row">
+                <button class="dl-btn2 dl-primary" onclick="showToast('⬇️ Export PDF disponible en version Pro !')">⬇️ Télécharger PDF</button>
+                <button class="dl-btn2 dl-secondary" onclick="showToast('🔗 Lien de partage copié !')">🔗 Partager</button>
+              </div>
+            </div>
+
+            <!-- LM -->
+            <div id="preview-lm" style="display:none;">
+              <div class="lm-preview">
+                <div class="lm-header-name" id="lm-name-el">Prénom Nom</div>
+                <div class="lm-header-role" id="lm-role-el">Candidature — Poste visé</div>
+                <p>Madame, Monsieur,</p>
+                <p id="lm-body-el">Actuellement en BUT Génie Industriel et Maintenance à l'IUT de Mantes en partenariat avec l'Université Paris-Saclay, je vous adresse ma candidature avec enthousiasme pour le poste proposé au sein de votre organisation.</p>
+                <p>Mon expérience en environnement logistique chez Lidl m'a permis de développer une rigueur opérationnelle et une compréhension concrète des flux industriels. Ces compétences, combinées à ma formation technique, font de moi un profil solide pour contribuer efficacement à votre équipe.</p>
+                <p>Passionné par la maintenance industrielle et l'amélioration continue, je suis convaincu que ma motivation et mes compétences représenteront une réelle valeur ajoutée pour votre organisation.</p>
+                <p>Dans l'attente de vous rencontrer, veuillez agréer mes sincères salutations.</p>
+                <p><strong id="lm-sign-el">Prénom Nom</strong></p>
+              </div>
+              <div class="dl-row">
+                <button class="dl-btn2 dl-primary" onclick="showToast('⬇️ Lettre PDF disponible en version Pro !')">⬇️ Télécharger PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section alt" id="features">
+  <div class="ct">
+    <div class="eyebrow reveal">Fonctionnalités</div>
+    <h2 class="sec-h reveal">Tout ce qu'il faut<br>pour décrocher le poste.</h2>
+    <div class="bento-grid">
+      <div class="bento-item span8 dark-blue reveal">
+        <span class="bento-icon2">🎯</span>
+        <div class="bento-h2">Score ATS en temps réel</div>
+        <p class="bento-p2">Sache exactement si ton CV passera les filtres automatiques avant même de postuler. 75% des CV sont éliminés avant d'être lus par un humain.</p>
+        <div class="score-display">
+          <div class="score-circle">
+            <svg width="88" height="88" viewBox="0 0 88 88"><circle class="sc-bg" cx="44" cy="44" r="35"/><circle class="sc-fill" cx="44" cy="44" r="35"/></svg>
+            <div class="sc-num">94</div>
+          </div>
+          <div class="score-breakdown">
+            <div class="sb-row"><div class="sb-label"><span>Mots-clés ATS</span><span>18/20</span></div><div class="sb-track"><div class="sb-bar" style="width:90%"></div></div></div>
+            <div class="sb-row"><div class="sb-label"><span>Format & structure</span><span>10/10</span></div><div class="sb-track"><div class="sb-bar" style="width:100%"></div></div></div>
+            <div class="sb-row"><div class="sb-label"><span>Pertinence poste</span><span>9/10</span></div><div class="sb-track"><div class="sb-bar" style="width:90%"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bento-item span4 reveal">
+        <span class="bento-icon2">📷</span>
+        <div class="bento-h2">Photo professionnelle</div>
+        <p class="bento-p2">Ajoute ta photo directement dans l'éditeur. Elle s'intègre élégamment dans la mise en page.</p>
+      </div>
+      <div class="bento-item span4 reveal">
+        <span class="bento-icon2">💼</span>
+        <div class="bento-h2">LinkedIn & Portfolio</div>
+        <p class="bento-p2">Tes liens pros intégrés dans le CV. Un clic et le recruteur arrive sur ton profil.</p>
+      </div>
+      <div class="bento-item span8 dark-purple reveal">
+        <span class="bento-icon2">✉️</span>
+        <div class="bento-h2">Lettre de motivation générée par l'IA</div>
+        <p class="bento-p2">Personnalisée pour chaque offre. Jamais générique. Toujours percutante.</p>
+        <div class="keyword-chips">
+          <span class="kchip found">maintenance préventive ✓</span>
+          <span class="kchip found">Lean / 5S ✓</span>
+          <span class="kchip found">diagnostic pannes ✓</span>
+          <span class="kchip">amélioration continue</span>
+          <span class="kchip found">GMAO ✓</span>
+          <span class="kchip">gestion de projet</span>
+          <span class="kchip found">logistique ✓</span>
+        </div>
+      </div>
+      <div class="bento-item span6 reveal">
+        <span class="bento-icon2">⚡</span>
+        <div class="bento-h2">Mise à jour instantanée</div>
+        <p class="bento-p2">Le CV se construit en temps réel pendant que tu remplis le formulaire. Ce que tu vois c'est exactement ce que tu obtiens.</p>
+      </div>
+      <div class="bento-item span6 reveal">
+        <span class="bento-icon2">🔒</span>
+        <div class="bento-h2">Données privées & sécurisées</div>
+        <p class="bento-p2">Tes données ne sont jamais vendues ni partagées. Tout est chiffré. Conforme RGPD. Tu supprimes quand tu veux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="ct">
+    <div class="eyebrow reveal">Tarifs</div>
+    <h2 class="sec-h reveal">Simple et transparent.</h2>
+    <p class="sec-sub reveal">Commence gratuitement, sans carte bancaire. Upgrade uniquement si tu veux les fonctionnalités IA avancées.</p>
+    <div class="pricing-cards">
+      <div class="price-card reveal">
+        <div class="pc-badge">Gratuit</div>
+        <div class="pc-name">Starter</div>
+        <div class="pc-price"><sup>€</sup>0</div>
+        <div class="pc-desc">Pour découvrir l'outil et créer un premier CV basique.</div>
+        <ul class="pc-features">
+          <li><span class="pc-check">✓</span>1 CV basique</li>
+          <li><span class="pc-check">✓</span>1 template</li>
+          <li><span class="pc-check">✓</span>Export PDF</li>
+          <li class="dim"><span class="pc-cross">✗</span>Optimisation IA</li>
+          <li class="dim"><span class="pc-cross">✗</span>Photo & liens</li>
+          <li class="dim"><span class="pc-cross">✗</span>Lettre de motivation</li>
+        </ul>
+        <button class="pc-btn" onclick="showToast('Bienvenue sur CVcraft 🎉')">Commencer gratuitement</button>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="pc-badge">⭐ Le plus populaire</div>
+        <div class="pc-name">Pro</div>
+        <div class="pc-price"><sup>€</sup>4<sub>,99 / CV</sub></div>
+        <div class="pc-desc">Pour décrocher l'entretien que tu mérites vraiment.</div>
+        <ul class="pc-features">
+          <li><span class="pc-check">✓</span>CV optimisé par IA</li>
+          <li><span class="pc-check">✓</span>Photo + LinkedIn + Portfolio</li>
+          <li><span class="pc-check">✓</span>Lettre de motivation IA</li>
+          <li><span class="pc-check">✓</span>Score ATS détaillé</li>
+          <li><span class="pc-check">✓</span>5 templates premium</li>
+          <li><span class="pc-check">✓</span>Export PDF haute qualité</li>
+        </ul>
+        <button class="pc-btn" onclick="showToast('Paiement sécurisé via Stripe...')">Obtenir mon CV Pro</button>
+      </div>
+      <div class="price-card reveal">
+        <div class="pc-badge">Meilleure valeur</div>
+        <div class="pc-name">Illimité</div>
+        <div class="pc-price"><sup>€</sup>9<sub>,99 / mois</sub></div>
+        <div class="pc-desc">Pour postuler en série sans se ruiner.</div>
+        <ul class="pc-features">
+          <li><span class="pc-check">✓</span>CV + LM illimités</li>
+          <li><span class="pc-check">✓</span>Tous les templates</li>
+          <li><span class="pc-check">✓</span>Suivi des candidatures</li>
+          <li><span class="pc-check">✓</span>Nouvelles fonctionnalités en avant-première</li>
+          <li><span class="pc-check">✓</span>Support prioritaire</li>
+          <li><span class="pc-check">✓</span>Annulation à tout moment</li>
+        </ul>
+        <button class="pc-btn" onclick="showToast('Paiement sécurisé via Stripe...')">S'abonner</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section alt" id="faq">
+  <div class="ct" style="text-align:center;">
+    <div class="eyebrow reveal" style="justify-content:center;">FAQ</div>
+    <h2 class="sec-h reveal">Questions fréquentes</h2>
+  </div>
+  <div class="faq-container">
+    <div class="faq-item2 reveal"><button class="faq-question" onclick="toggleFaq(this)">C'est vraiment gratuit pour commencer ? <span class="faq-icon2">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Oui, totalement. Tu crées un compte et un CV basique sans aucune carte bancaire. L'optimisation IA, la photo, les liens et la lettre de motivation sont disponibles en version Pro à 4,99€ par CV, ou en illimité à 9,99€/mois.</div></div></div>
+    <div class="faq-item2 reveal"><button class="faq-question" onclick="toggleFaq(this)">Qu'est-ce qu'un score ATS ? <span class="faq-icon2">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Les ATS (Applicant Tracking Systems) sont des logiciels utilisés par la majorité des entreprises pour filtrer automatiquement les CV avant qu'un humain les lise. CVcraft analyse ton CV et lui attribue un score selon les critères ATS : mots-clés, format, pertinence avec l'offre.</div></div></div>
+    <div class="faq-item2 reveal"><button class="faq-question" onclick="toggleFaq(this)">Mes données personnelles sont-elles sécurisées ? <span class="faq-icon2">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Tes données ne sont jamais vendues ni partagées avec des tiers. Tout est chiffré et le service est conforme au RGPD. Tu peux demander la suppression de ton compte et de toutes tes données à tout moment depuis les paramètres.</div></div></div>
+    <div class="faq-item2 reveal"><button class="faq-question" onclick="toggleFaq(this)">Puis-je annuler l'abonnement Illimité ? <span class="faq-icon2">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Oui, sans engagement ni frais de résiliation. Tu annules en un clic depuis ton espace personnel. Tu conserves l'accès jusqu'à la fin de ta période payée en cours.</div></div></div>
+    <div class="faq-item2 reveal"><button class="faq-question" onclick="toggleFaq(this)">En combien de temps mon CV est-il prêt ? <span class="faq-icon2">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Le CV se construit en temps réel pendant que tu remplis le formulaire. Une fois ton profil complet, l'optimisation IA prend moins de 30 secondes. En moins de 2 minutes, tu as un CV professionnel prêt à envoyer.</div></div></div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <h2 class="cta-h">Ton prochain entretien<br>commence <em>ici.</em></h2>
+  <p class="cta-sub">Aucune carte bancaire requise. Gratuit pour démarrer.</p>
+  <a class="cta-primary" href="#app" style="font-size:17px;padding:18px 44px;">Créer mon CV gratuitement <span class="arrow">→</span></a>
+  <p class="cta-note">✓ Gratuit pour commencer · ✓ Données privées · ✓ Annulation à tout moment</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">CVcraft<span class="fd"></span></div>
+    <div class="footer-links">
+      <a href="#">Confidentialité</a>
+      <a href="#">CGU</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 CVcraft · Fait avec ❤️ en France</div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+/* ══════════════════ TABS ══════════════════ */
+function switchTab(id, btn) {
+  document.querySelectorAll('.epage').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.e-tab2').forEach(b => b.classList.remove('on'));
+  document.getElementById('page-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+function switchPreview(t) {
+  document.getElementById('preview-cv').style.display = t === 'cv' ? 'block' : 'none';
+  document.getElementById('preview-lm').style.display = t === 'lm' ? 'block' : 'none';
+  document.getElementById('ptab-cv').classList.toggle('on', t === 'cv');
+  document.getElementById('ptab-lm').classList.toggle('on', t === 'lm');
+}
+
+/* ══════════════════ PHOTO ══════════════════ */
+function handlePhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const src = e.target.result;
+    const prev = document.getElementById('photo-preview-img');
+    prev.src = src; prev.style.display = 'block';
+    document.getElementById('photo-placeholder-el').style.display = 'none';
+    document.getElementById('cv-photo-el').src = src;
+    document.getElementById('cv-photo-el').style.display = 'block';
+    document.getElementById('cv-photo-placeholder').style.display = 'none';
+    showToast('📷 Photo ajoutée avec succès !');
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ══════════════════ SYNC ══════════════════ */
+function gv(id) { return (document.getElementById(id) || {}).value || ''; }
+function st(id, v, fb) { const el = document.getElementById(id); if (el) el.textContent = v || fb || ''; }
+
+function syncPreview() {
+  const fn = gv('f-prenom'), ln = gv('f-nom');
+  const full = [fn, ln].filter(Boolean).join(' ');
+  st('cv-name-el', full, 'Prénom Nom');
+  st('cv-job-el', gv('f-job'), 'Poste visé');
+  st('cv-email-el', gv('f-email'), 'email@exemple.com');
+  st('cv-phone-el', gv('f-phone'), '06 XX XX XX XX');
+  st('cv-city-el', gv('f-city'), 'Ville');
+  st('cv-degree-el', gv('f-degree'), 'BUT Génie Industriel et Maintenance');
+  st('cv-school-el', gv('f-school'), 'IUT de Mantes · Université Paris-Saclay');
+  st('cv-years-el', gv('f-years'), '2023 – 2026');
+  st('cv-mention-el', gv('f-mention') ? 'Mention ' + gv('f-mention') : 'Mention Bien');
+  st('cv-etitle-el', gv('f-etitle'), 'Opérateur logistique');
+  st('cv-eco-el', gv('f-eco'), 'Lidl — Grand entrepôt logistique');
+  const d = [gv('f-estart'), gv('f-eend')].filter(Boolean).join(' – ');
+  st('cv-edate-el', d, 'Sept. 2024 – Présent');
+  // Description
+  if (gv('f-edesc')) {
+    const el = document.getElementById('cv-edesc-el');
+    el.innerHTML = '';
+    const ul = document.createElement('ul');
+    gv('f-edesc').split('\n').filter(l => l.trim()).forEach(line => {
+      const li = document.createElement('li'); li.textContent = line.trim(); ul.appendChild(li);
+    });
+    el.appendChild(ul);
+  }
+  // LinkedIn
+  const li = gv('f-linkedin');
+  const liEl = document.getElementById('cv-li-el');
+  liEl.textContent = li || 'LinkedIn';
+  liEl.style.color = li ? 'rgba(99,155,250,.9)' : 'rgba(99,155,250,.3)';
+  // Portfolio
+  const pt = gv('f-portfolio');
+  const ptEl = document.getElementById('cv-pt-el');
+  ptEl.textContent = pt || 'Portfolio';
+  ptEl.style.color = pt ? 'rgba(99,155,250,.9)' : 'rgba(99,155,250,.3)';
+  // Skills
+  const sk = gv('f-skills');
+  if (sk) {
+    const tags = document.getElementById('cv-skill-tags');
+    const bars = document.getElementById('cv-skill-bars');
+    tags.innerHTML = ''; bars.innerHTML = '';
+    const tagColors = ['b', 'g', 'p', 'b', 'g', 'gy', 'a', 'b'];
+    sk.split(',').map(s => s.trim()).filter(Boolean).forEach((s, i) => {
+      const sp = document.createElement('span');
+      sp.className = 'cvtag2 ' + (tagColors[i % tagColors.length]);
+      sp.textContent = s; tags.appendChild(sp);
+      const bar = document.createElement('div');
+      bar.className = 'cv-skill-item';
+      const w = Math.max(55, 95 - i * 5);
+      bar.innerHTML = `<div class="cv-skill-name">${s}</div><div class="cv-skill-track"><div class="cv-skill-bar" style="width:${w}%"></div></div>`;
+      bars.appendChild(bar);
+    });
+  }
+  // Langues
+  st('cv-l1-el', gv('f-l1'), 'Français'); st('cv-l1n-el', gv('f-l1n'), 'Natif');
+  st('cv-l2-el', gv('f-l2'), 'Anglais'); st('cv-l2n-el', gv('f-l2n'), 'B2');
+  // LM
+  st('lm-name-el', full, 'Prénom Nom');
+  st('lm-role-el', 'Candidature — ' + (gv('f-job') || 'Poste visé'));
+  st('lm-sign-el', full, 'Prénom Nom');
+}
+
+/* ══════════════════ AI ══════════════════ */
+function launchAI() {
+  const prog = document.getElementById('ai-prog');
+  const txt = document.getElementById('ai-prog-text');
+  const steps = [
+    '🔍 Analyse sémantique de l\'offre...',
+    '🏷️ Extraction des mots-clés ATS...',
+    '✍️ Reformulation intelligente des expériences...',
+    '📊 Calcul du score ATS...',
+    '📝 Génération de la lettre de motivation...',
+    '✅ CV optimisé — Score ATS : 94/100 !'
+  ];
+  let i = 0; prog.style.width = '0%';
+  const timer = setInterval(() => {
+    i++;
+    prog.style.width = Math.min(i * 17, 100) + '%';
+    txt.textContent = steps[i - 1] || '';
+    if (i >= 6) {
+      clearInterval(timer);
+      // Update CV content
+      const desc = document.getElementById('cv-edesc-el');
+      desc.innerHTML = '<ul><li>Optimisation des flux logistiques selon les standards Lean/5S</li><li>Maintenance préventive des équipements de manutention</li><li>Réduction des erreurs de préparation de 12% en 3 mois</li><li>Gestion autonome des priorités en environnement haute cadence</li></ul>';
+      // Update skills
+      const tags = document.getElementById('cv-skill-tags');
+      const bars = document.getElementById('cv-skill-bars');
+      tags.innerHTML = ''; bars.innerHTML = '';
+      const optimizedSkills = [
+        {n:'Maintenance préventive',c:'b',w:93},{n:'Diagnostic pannes',c:'b',w:86},
+        {n:'Lean / 5S',c:'g',w:89},{n:'GMAO',c:'b',w:81},
+        {n:'Logistique',c:'g',w:91},{n:'AutoCAD',c:'p',w:73},
+        {n:'Excel avancé',c:'gy',w:78},{n:'Amélioration continue',c:'g',w:85},
+      ];
+      optimizedSkills.forEach(({n,c,w}) => {
+        const sp = document.createElement('span');
+        sp.className = 'cvtag2 ' + c; sp.textContent = n; tags.appendChild(sp);
+        const b = document.createElement('div'); b.className = 'cv-skill-item';
+        b.innerHTML = `<div class="cv-skill-name">${n}</div><div class="cv-skill-track"><div class="cv-skill-bar" style="width:${w}%"></div></div>`;
+        bars.appendChild(b);
+      });
+      // Update LM
+      st('lm-body-el', 'Actuellement en BUT Génie Industriel et Maintenance à l\'IUT de Mantes, j\'ai développé une expertise concrète en maintenance préventive et en optimisation des processus selon les méthodes Lean. Mon expérience chez Lidl, où j\'ai activement contribué à réduire les erreurs de préparation de 12%, démontre ma capacité à livrer des résultats mesurables dans des environnements exigeants — exactement les compétences que vous recherchez.');
+      showToast('🎉 Score ATS : 94/100 — CV optimisé avec succès !');
+      setTimeout(() => { prog.style.width = '0%'; txt.textContent = ''; }, 6000);
+    }
+  }, 600);
+}
+
+/* ══════════════════ FAQ ══════════════════ */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item2.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+/* ══════════════════ TOAST ══════════════════ */
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+/* ══════════════════ SCROLL REVEAL ══════════════════ */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.classList.add('visible');
+      }, i * 80);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ══════════════════ NAV SCROLL ══════════════════ */
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(8,8,10,.98)';
+  } else {
+    nav.style.background = 'rgba(8,8,10,.8)';
+  }
+});
+</script>
+</body>
+</html>
